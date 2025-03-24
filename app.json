@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "الشيخ إبراهيم أشرف",
+    "slug": "sheikh-ibrahim-ashraf",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "assets/images/icon.png",
+    "userInterfaceStyle": "automatic",
+    "scheme": "sheikhibrahimashraf",
+    "splash": {
+      "image": "assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.sheikhibrahimashraf.app",
+      "versionCode": 1,
+      "permissions": [
+        "INTERNET",
+        "ACCESS_NETWORK_STATE"
+      ]
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "50593fcb-5c4b-45bc-b278-f9f28c050c95"
+      }
+    },
+    "owner": "meftah.al-oloom"
+  }
+}
