@@ -1,0 +1,13 @@
+🆕 What's New:
+
+⭐ Premium Subscription (Coming Soon)
+• Prepared subscription infrastructure
+• Added subscription interface
+• Ad-free experience coming soon
+
+📱 Improvements
+• Fixed ads display in home screen
+• Moved ads outside content lists for better experience
+
+🐛 Bug Fixes
+• Fixed ads display issues in content lists

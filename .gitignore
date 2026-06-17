@@ -29,10 +29,17 @@ yarn-error.*
 .DS_Store
 *.pem
 
-# local env files
+# local env and sensitive files
 .env*.local
+.env
+service-account.json
+google-services.json
 
 # typescript
 *.tsbuildinfo
 
 app-example
+
+# build outputs
+application-*.apk
+application-*.aab

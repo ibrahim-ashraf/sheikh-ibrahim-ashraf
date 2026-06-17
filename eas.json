@@ -1,0 +1,36 @@
+{
+  "cli": {
+    "version": ">= 5.9.1",
+    "appVersionSource": "local"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "GOOGLE_SERVICES_JSON": "./google-services.json"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "env": {
+        "GOOGLE_SERVICES_JSON": "./google-services.json"
+      }
+    },
+    "production": {
+      "env": {
+        "GOOGLE_SERVICES_JSON": "./google-services.json"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "android": {
+        "serviceAccountKeyPath": "./service-account.json",
+        "track": "alpha",
+        "releaseStatus": "completed",
+        "changesNotSentForReview": true
+      }
+    }
+  }
+}

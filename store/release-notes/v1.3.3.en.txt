@@ -1,0 +1,12 @@
+🔄 Improvements:
+
+🔐 Sign-in Fixes
+• Fixed Google Sign-in issues
+• Enhanced sign-in error messages
+• Improved user experience during sign-in
+
+⚡ Performance
+• Enhanced app speed and stability
+• Various fixes and improvements
+
+Thank you for your continuous support! 🌟

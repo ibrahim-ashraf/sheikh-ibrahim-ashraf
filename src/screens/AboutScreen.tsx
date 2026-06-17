@@ -3,10 +3,17 @@ import { View, Text, StyleSheet, Image, Linking, TouchableOpacity, ScrollView, A
 import { useTheme } from '../context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 import { fetchChannelInfo, ChannelInfo, CHANNEL_ID } from '../services/youtubeApi';
+import { openRatingPage } from '../services/ratingService';
+import { AdBanner } from '../components/AdBanner';
+import { useRouter } from 'expo-router';
+import { useSubscription } from '../context/SubscriptionContext';
+import Constants from 'expo-constants';
 
 const AboutScreen = () => {
   const { theme } = useTheme();
+  const router = useRouter();
   const [channelInfo, setChannelInfo] = useState<ChannelInfo['items'][0] | null>(null);
+  const { setUserInfo, isPremium } = useSubscription();
 
   useEffect(() => {
     loadChannelInfo();
@@ -23,15 +30,29 @@ const AboutScreen = () => {
 
   const socialLinks = [
     { icon: 'logo-youtube', url: `https://youtube.com/channel/${CHANNEL_ID}`, color: '#FF0000', label: 'قناة اليوتيوب' },
-    { icon: 'logo-facebook', url: 'https://facebook.com/sheikhibrahim', color: '#1877F2', label: 'صفحة فيسبوك' },
-    { icon: 'logo-twitter', url: 'https://x.com/sheikhibrahim', color: '#000000', label: 'حساب X' },
-    { icon: 'paper-plane', url: 'https://t.me/sheikhibrahim', color: '#0088cc', label: 'قناة تيليجرام' },
+    { icon: 'logo-facebook', url: 'https://www.facebook.com/IbrahimAshrafFB', color: '#1877F2', label: 'صفحة فيسبوك' },
+    { icon: 'logo-twitter', url: 'https://x.com/IbrahimAshrafX', color: '#000000', label: 'حساب X' },
+    { icon: 'paper-plane', url: 'https://t.me/IbrahimAshrafTG_C', color: '#0088cc', label: 'قناة تيليجرام' },
+    {
+      icon: 'star',
+      url: '',
+      color: '#FFD700',
+      label: 'قيّم التطبيق',
+      onPress: openRatingPage
+    },
+    {
+      icon: 'person',
+      url: '',
+      color: theme.colors.primary,
+      label: 'الملف الشخصي',
+      onPress: () => router.push('/profile')
+    },
   ];
 
   const shareApp = async () => {
     try {
       await Share.share({
-        message: 'تطبيق الشيخ إبراهيم أشرف - استمع وشاهد دروس ومحاضرات الشيخ\nhttps://play.google.com/store/apps/details?id=com.sheikhibrahimashraf.app'
+        message: 'تطبيق الشيخ إبراهيم أشرف - استمع وشاهد فيديوهات الشيخ\nhttps://play.google.com/store/apps/details?id=com.meftahaloloom.sheikhibrahimashraf',
       });
     } catch (error) {
       console.error('Error sharing app:', error);
@@ -39,7 +60,7 @@ const AboutScreen = () => {
   };
 
   const openPrivacyPolicy = () => {
-    Linking.openURL('https://raw.githubusercontent.com/yourusername/sheikhibrahimashraf/main/privacy-policy.html');
+    Linking.openURL('https://sheikh-ibrahim-ashraf.netlify.app/privacy-policy');
   };
 
   if (!channelInfo) {
@@ -73,12 +94,12 @@ const AboutScreen = () => {
           {socialLinks.map((link, index) => (
             <TouchableOpacity
               key={index}
-              onPress={() => Linking.openURL(link.url)}
+              onPress={link.onPress || (() => Linking.openURL(link.url))}
               style={[styles.socialButton, { backgroundColor: link.color }]}
               accessible={true}
-              accessibilityRole="link"
+              accessibilityRole="button"
               accessibilityLabel={link.label}
-              accessibilityHint={`افتح ${link.label} في المتصفح`}
+              accessibilityHint={`انقر ${link.label}`}
             >
               <Ionicons name={link.icon as any} size={24} color="white" />
             </TouchableOpacity>
@@ -99,6 +120,22 @@ const AboutScreen = () => {
         </TouchableOpacity>
 
         <TouchableOpacity
+          onPress={() => router.push("/subscribe")}
+          style={[styles.button, { backgroundColor: theme.colors.primary }]}
+          accessible={true}
+          accessibilityRole="button"
+          accessibilityLabel="الاشتراك المميز"
+          accessibilityHint="اشترك لإزالة الإعلانات"
+        >
+          <View style={styles.buttonInner}>
+            <Ionicons name="star-outline" size={20} color="#FFFFFF" style={styles.buttonIcon} />
+            <Text style={[styles.buttonText, { color: '#FFFFFF' }]}>
+              الاشتراك
+            </Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity
           onPress={shareApp}
           style={[styles.button, { backgroundColor: theme.colors.primary }]}
           accessible={true}
@@ -111,9 +148,11 @@ const AboutScreen = () => {
           </Text>
         </TouchableOpacity>
 
+        <AdBanner />
+
         <View style={styles.appInfo}>
           <Text style={[styles.appVersion, { color: theme.colors.textSecondary }]}>
-            نسخة التطبيق: 1.0.0
+            التطبيق: {Constants.expoConfig?.version || '1.0.0'}
           </Text>
         </View>
       </View>
@@ -124,8 +163,8 @@ const AboutScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     padding: 20,
+    alignItems: 'center',
   },
   channelImage: {
     width: 150,
@@ -164,6 +203,7 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 8,
     width: '100%',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   buttonText: {
@@ -176,6 +216,15 @@ const styles = StyleSheet.create({
   },
   appVersion: {
     fontSize: 14,
+  },
+  buttonInner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+  },
+  buttonIcon: {
+    marginLeft: 8,
   },
 });
 

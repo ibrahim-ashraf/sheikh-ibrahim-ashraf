@@ -1,0 +1,17 @@
+🆕 What's New:
+
+🔄 Update System
+• Added automatic update checking feature
+• User notification when new version is available
+
+⭐ Rating System
+• Added gentle rating reminder after third app launch
+• Improved rating request experience with appropriate intervals
+
+📱 Interface Improvements
+• Added non-intrusive banner ads
+• Enhanced interstitial ads display with user experience in mind
+• General app performance improvements
+• Reduced app size by removing unused libraries
+
+Please rate the app if you like it 🌟

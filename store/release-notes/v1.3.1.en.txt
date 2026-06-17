@@ -1,0 +1,13 @@
+🔄 Improvements:
+
+🔐 Sign-in Enhancement
+• Fixed sign-in issues on certain devices
+• Simplified Google Sign-in process
+• Enhanced user experience during authentication
+
+📱 General Improvements
+• Completed app update checking system
+• Enhanced update experience
+• Added support for mandatory updates
+
+Thank you for your continuous support! 🌟

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>اتصل بنا - تطبيق الشيخ إبراهيم أشرف</title>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #2c3e50;
+      margin-bottom: 1rem;
+    }
+
+    .contact-section {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background-color: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .contact-method {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-method h3 {
+      color: #2c3e50;
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .contact-method svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .social-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background-color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s;
+    }
+
+    .social-link:hover {
+      transform: translateY(-2px);
+    }
+
+    .social-link svg {
+      width: 24px;
+      height: 24px;
+      margin-left: 0.5rem;
+    }
+
+    .email-template {
+      background-color: #e9ecef;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .note {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+
+    .response-time {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+
+    /* نموذج الاتصال */
+    .contact-form {
+      margin-top: 2rem;
+      padding: 2rem;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+      background-color: #fff;
+    }
+
+    .form-textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      background-color: #2c3e50;
+      color: #fff;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .form-submit:hover {
+      background-color: #34495e;
+    }
+
+    .form-submit:disabled {
+      background-color: #95a5a6;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 600px) {
+      .social-links {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form {
+        padding: 1rem;
+      }
+    }
+
+    /* تنسيق رسالة النجاح */
+    .success-message {
+      display: none;
+      background-color: #d4edda;
+      color: #155724;
+      padding: 1rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>اتصل بنا</h1>
+    <p>
+      نرحب بتواصلكم معنا في أي وقت. يمكنكم الوصول إلينا من خلال النموذج أدناه أو عبر قنوات الاتصال المختلفة.
+    </p>
+
+    <div class="contact-section">
+      <h2>نموذج الاتصال</h2>
+      <form name="contact" method="POST" data-netlify="true" class="contact-form" netlify-honeypot="bot-field">
+        <p class="hidden">
+          <label>
+            لا تملأ هذا الحقل إذا كنت إنساناً: <input name="bot-field" />
+          </label>
+        </p>
+
+        <input type="hidden" name="form-name" value="contact" />
+
+        <div class="form-group">
+          <label for="name" class="form-label">الاسم</label>
+          <input type="text" id="name" name="name" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">البريد الإلكتروني</label>
+          <input type="email" id="email" name="email" class="form-input" required>
+        </div>
+
+        <div class="form-group">
+          <label for="request-type" class="form-label">نوع الطلب</label>
+          <select id="request-type" name="request-type" class="form-select" required>
+            <option value="">اختر نوع الطلب</option>
+            <option value="general">استفسار عام</option>
+            <option value="technical">مشكلة تقنية</option>
+            <option value="account-deletion">طلب حذف حساب</option>
+            <option value="subscription">استفسار عن الاشتراك</option>
+            <option value="other">أخرى</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="app-version" class="form-label">إصدار التطبيق (اختياري)</label>
+          <input type="text" id="app-version" name="app-version" class="form-input" placeholder="مثال: 1.3.3">
+        </div>
+
+        <div class="form-group">
+          <label for="message" class="form-label">الرسالة</label>
+          <textarea id="message" name="message" class="form-textarea" required></textarea>
+        </div>
+
+        <button type="submit" class="form-submit">إرسال الرسالة</button>
+      </form>
+
+      <div id="success-message" class="success-message">
+        تم إرسال رسالتك بنجاح! سنقوم بالرد عليك في أقرب وقت ممكن.
+      </div>
+    </div>
+
+    <div class="response-time">
+      <strong>⏱️ وقت الاستجابة المتوقع:</strong>
+      <ul>
+        <li>الرسائل العامة: خلال 24 ساعة عمل</li>
+        <li>المشكلات التقنية: خلال 48 ساعة عمل</li>
+        <li>طلبات حذف الحساب: خلال 48 ساعة عمل</li>
+      </ul>
+    </div>
+
+    <div class="contact-section">
+      <h2>طرق التواصل الرسمية</h2>
+
+      <div class="contact-method">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+          البريد الإلكتروني
+        </h3>
+        <p>يمكنكم مراسلتنا على: <strong>info@sheikhibrahimashraf.com</strong></p>
+        <p>نستقبل جميع الاستفسارات والمقترحات وطلبات الدعم الفني.</p>
+      </div>
+
+      <div class="contact-method">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 2L11 13" />
+            <path d="M22 2l-7 20-4-9-9-4 20-7z" />
+          </svg>
+          تيليجرام
+        </h3>
+        <p>للتواصل المباشر والسريع: <a href="https://t.me/sheikhibrahim">@sheikhibrahim</a></p>
+      </div>
+    </div>
+
+    <div class="contact-section">
+      <h2>حسابات التواصل الاجتماعي</h2>
+      <div class="social-links">
+        <a href="https://youtube.com/channel/UCdI_zQXtDJto-MAVI-LHgJg" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FF0000">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+          </svg>
+          قناة اليوتيوب
+        </a>
+        <a href="https://www.facebook.com/IbrahimAshrafFB" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1877F2">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+          </svg>
+          صفحة فيسبوك
+        </a>
+        <a href="https://x.com/IbrahimAshrafX" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000">
+            <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644Z" />
+          </svg>
+          حساب X
+        </a>
+        <a href="https://t.me/IbrahimAshrafTG_C" class="social-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0088cc">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.49-1.302.481-.428-.009-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.178.119.13.154.305.164.466-.004.061-.005.177-.006.357z" />
+          </svg>
+          قناة تيليجرام
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-section">
+      <h2>معلومات الدعم الفني</h2>
+      <div class="contact-method">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+          </svg>
+          معلومات مفيدة للدعم الفني
+        </h3>
+        <p>للإبلاغ عن مشكلة تقنية، يرجى تضمين المعلومات التالية في رسالتك:</p>
+        <ul>
+          <li>نوع الجهاز وإصدار نظام التشغيل</li>
+          <li>إصدار التطبيق</li>
+          <li>وصف تفصيلي للمشكلة</li>
+          <li>خطوات إعادة إنتاج المشكلة (إن أمكن)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="contact-section">
+      <h2>معلومات إضافية</h2>
+      <ul>
+        <li>نرد على جميع الرسائل خلال أوقات العمل (9 صباحاً - 5 مساءً بتوقيت القاهرة)</li>
+        <li>لضمان رد أسرع، يرجى اختيار نوع الطلب المناسب في النموذج</li>
+        <li>للأسئلة الشائعة، يمكنكم مراجعة <a href="privacy-policy.html">سياسة الخصوصية</a></li>
+      </ul>
+    </div>
+
+    <p>
+      آخر تحديث: مايو 2025
+    </p>
+  </div>
+
+  <script>
+    // إظهار رسالة النجاح بعد إرسال النموذج
+    const form = document.querySelector('form[name="contact"]');
+    const successMessage = document.getElementById('success-message');
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        if (!e.defaultPrevented) {
+          const formData = new FormData(form);
+          fetch('/', {
+            method: 'POST',
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+          })
+            .then(() => {
+              form.style.display = 'none';
+              successMessage.style.display = 'block';
+              form.reset();
+            })
+            .catch((error) => alert('حدث خطأ أثناء إرسال النموذج. يرجى المحاولة مرة أخرى.'));
+        }
+      });
+    }
+
+    // تحديث حقل نوع الطلب تلقائياً إذا تم الوصول عبر رابط حذف الحساب
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.location.hash === '#account-deletion') {
+        const requestType = document.getElementById('request-type');
+        if (requestType) {
+          requestType.value = 'account-deletion';
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

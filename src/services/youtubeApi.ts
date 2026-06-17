@@ -6,11 +6,11 @@ export interface VideoItem {
   id: {
     videoId: string;
   };
-  snippet: {
+  snippet?: {
     title: string;
     description: string;
-    thumbnails: {
-      medium: {
+    thumbnails?: {
+      medium?: {
         url: string;
       };
     };

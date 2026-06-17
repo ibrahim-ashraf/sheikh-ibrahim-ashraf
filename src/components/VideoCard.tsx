@@ -6,45 +6,59 @@ import { useRouter } from 'expo-router';
 
 interface VideoCardProps {
   video: VideoItem;
+  disabled?: boolean;
 }
 
-const VideoCard: React.FC<VideoCardProps> = ({ video }) => {
+const VideoCard: React.FC<VideoCardProps> = ({ video, disabled }) => {
   const { theme } = useTheme();
   const router = useRouter();
 
+  // التحقق من وجود الصورة المصغرة
+  const thumbnailUrl = video.snippet?.thumbnails?.medium?.url ||
+    'https://via.placeholder.com/480x360.png?text=Video+Unavailable';
+
   return (
     <TouchableOpacity
-      style={[styles.container, { backgroundColor: theme.colors.card }]}
-      onPress={() => router.push(`/video/${video.id.videoId}`)}
+      style={[
+        styles.container,
+        {
+          backgroundColor: theme.colors.card,
+          opacity: disabled ? 0.5 : 1
+        }
+      ]}
+      onPress={() => !disabled && router.push(`/video/${video.id.videoId}`)}
+      disabled={disabled}
       accessible={true}
       accessibilityRole="button"
-      accessibilityLabel={`فيديو: ${video.snippet.title}`}
-      accessibilityHint="انقر لمشاهدة الفيديو"
+      accessibilityLabel={`فيديو: ${video.snippet?.title || 'غير متوفر'}`}
+      accessibilityHint={disabled ? "هذا الفيديو غير متوفر" : "انقر لمشاهدة الفيديو"}
     >
       <Image
-        source={{ uri: video.snippet.thumbnails.medium.url }}
+        source={{ uri: thumbnailUrl }}
         style={styles.thumbnail}
         accessible={true}
         accessibilityRole="image"
-        accessibilityLabel={`صورة مصغرة لفيديو: ${video.snippet.title}`}
+        accessibilityLabel={`صورة مصغرة لفيديو: ${video.snippet?.title || 'غير متوفر'}`}
       />
       <View style={styles.details}>
         <Text
           style={[styles.title, { color: theme.colors.text }]}
           numberOfLines={2}
-          accessible={true}
-          accessibilityRole="text"
         >
-          {video.snippet.title}
+          {video.snippet?.title || 'فيديو غير متوفر'}
         </Text>
-        <Text
-          style={[styles.date, { color: theme.colors.textSecondary }]}
-          accessible={true}
-          accessibilityRole="text"
-          accessibilityLabel={`تاريخ النشر: ${new Date(video.snippet.publishedAt).toLocaleDateString('ar-EG')}`}
-        >
-          {new Date(video.snippet.publishedAt).toLocaleDateString('ar-EG')}
-        </Text>
+        {video.snippet?.publishedAt && (
+          <Text
+            style={[styles.date, { color: theme.colors.textSecondary }]}
+          >
+            {new Date(video.snippet.publishedAt).toLocaleDateString('ar-EG')}
+          </Text>
+        )}
+        {disabled && (
+          <Text style={[styles.unavailable, { color: theme.colors.primary }]}>
+            هذا الفيديو غير متوفر
+          </Text>
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -76,6 +90,11 @@ const styles = StyleSheet.create({
   },
   date: {
     fontSize: 12,
+  },
+  unavailable: {
+    fontSize: 12,
+    marginTop: 4,
+    fontWeight: 'bold',
   },
 });
 

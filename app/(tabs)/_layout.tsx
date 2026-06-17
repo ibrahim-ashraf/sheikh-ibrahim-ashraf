@@ -1,40 +1,63 @@
 import { Tabs } from 'expo-router';
+import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../src/context/ThemeContext';
+import { useSubscription } from '../../src/context/SubscriptionContext';
 
 export default function TabsLayout() {
-  const { theme } = useTheme();
+  const { theme, isDarkMode, toggleTheme } = useTheme();
 
   return (
     <Tabs
-      screenOptions={({ route }) => ({
-        headerStyle: {
-          backgroundColor: theme.colors.background,
-        },
+      screenOptions={{
+        headerStyle: { backgroundColor: theme.colors.background },
         headerTintColor: theme.colors.text,
-        tabBarStyle: {
-          backgroundColor: theme.colors.background,
-        },
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-          switch (route.name) {
-            case 'index':
-              iconName = focused ? 'home' : 'home-outline';
-              break;
-            case 'playlists':
-              iconName = focused ? 'list' : 'list-outline';
-              break;
-            case 'about':
-              iconName = focused ? 'information-circle' : 'information-circle-outline';
-              break;
-          }
-          return <Ionicons name={iconName as any} size={size} color={color} />;
-        },
-      })}
+        tabBarStyle: { backgroundColor: theme.colors.background },
+        tabBarActiveTintColor: theme.colors.primary,
+        headerRight: () => (
+          <TouchableOpacity
+            onPress={toggleTheme}
+            style={{ marginRight: 15 }}
+            accessible={true}
+            accessibilityRole="button"
+            accessibilityLabel={isDarkMode ? "تفعيل الوضع النهاري" : "تفعيل الوضع الليلي"}
+            accessibilityHint="انقر لتغيير مظهر التطبيق"
+          >
+            <Ionicons name={isDarkMode ? "sunny" : "moon"} size={24} color={theme.colors.text} />
+          </TouchableOpacity>
+        ),
+      }}
     >
-      <Tabs.Screen name="index" options={{ title: 'الرئيسية' }} />
-      <Tabs.Screen name="playlists" options={{ title: 'القوائم' }} />
-      <Tabs.Screen name="about" options={{ title: 'عن القناة' }} />
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: 'الرئيسية',
+          headerTitle: 'الرئيسية',
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="playlists/index"
+        options={{
+          title: 'قوائم التشغيل',
+          headerTitle: 'قوائم التشغيل',
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons name={focused ? 'list' : 'list-outline'} size={size} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="about/index"
+        options={{
+          title: 'عن القناة',
+          headerTitle: 'عن القناة',
+          tabBarIcon: ({ focused, color, size }) => (
+            <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} size={size} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }
