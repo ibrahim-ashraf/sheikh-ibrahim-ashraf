@@ -40,6 +40,10 @@ google-services.json
 
 app-example
 
+# Native directories
+/android
+/ios
+
 # build outputs
 application-*.apk
 application-*.aab
