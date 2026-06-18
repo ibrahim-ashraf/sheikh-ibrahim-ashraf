@@ -1,0 +1,6 @@
+What's New in Version 1.3.6؟
+
+• Upgraded the app to the latest supported platform versions.
+• Improved overall stability and performance.
+• Enhanced compatibility with newer Android versions.
+• Various internal fixes and improvements.

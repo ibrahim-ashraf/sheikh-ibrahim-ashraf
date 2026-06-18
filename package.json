@@ -1,7 +1,7 @@
 {
   "name": "alsheikhibrahimashraf",
   "main": "expo-router/entry",
-  "version": "1.3.3",
+  "version": "1.3.6",
   "scripts": {
     "start": "expo start",
     "start:expo": "expo start -c",
