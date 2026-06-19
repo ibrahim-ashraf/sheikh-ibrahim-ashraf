@@ -1,6 +1,6 @@
 // تحتاج لتغيير هذه القيم فقط
-export const API_KEY = 'AIzaSyCtnx1h5x8EdxUqxjUWMFQgG_7sJoNktgg';
-export const CHANNEL_ID = 'UCdI_zQXtDJto-MAVI-LHgJg'; // معرف قناتك على YouTube
+export const API_KEY = process.env.EXPO_PUBLIC_YOUTUBE_API_KEY;
+export const CHANNEL_ID = process.env.EXPO_PUBLIC_CHANNEL_ID;
 
 export interface VideoItem {
   id: {
