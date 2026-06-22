@@ -36,8 +36,9 @@ yarn-error.*
 # Environment and sensitive files
 .env
 .env*.local
-service-account.json
 google-services.json
+service-account.json
+sheikh-ibrahim-ashraf-firebase-adminsdk-fbsvc-1a805478ad.json
 
 # typescript
 *.tsbuildinfo

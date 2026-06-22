@@ -2,7 +2,7 @@ export default {
   expo: {
     name: "تطبيق الشيخ إبراهيم أشرف",
     slug: "sheikh-ibrahim-ashraf",
-    version: "1.3.6",
+    version: "1.3.7",
     orientation: "portrait",
     icon: "assets/images/icon.png",
     userInterfaceStyle: "automatic",
@@ -29,7 +29,7 @@ export default {
             compileSdkVersion: 35,
             targetSdkVersion: 35,
             buildToolsVersion: "35.0.0",
-            enableProguardInReleaseBuilds: false
+            enableProguardInReleaseBuilds: true
           }
         }
       ]
@@ -44,11 +44,12 @@ export default {
         backgroundColor: "#ffffff"
       },
       package: "com.meftahaloloom.sheikhibrahimashraf",
-      versionCode: 13,
+      versionCode: 14,
       permissions: [
         "INTERNET",
         "ACCESS_NETWORK_STATE",
-        "com.android.vending.BILLING"
+        "com.android.vending.BILLING",
+        "POST_NOTIFICATIONS"
       ],
       jsEngine: "hermes",
       googleServicesFile: process.env.GOOGLE_SERVICES_JSON

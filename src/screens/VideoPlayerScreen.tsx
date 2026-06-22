@@ -43,7 +43,7 @@ const VideoPlayerScreen: React.FC<VideoPlayerScreenProps> = ({ videoId }) => {
         width={Dimensions.get('window').width}
         videoId={videoId}
         play={playing}
-        onChangeState={(event) => {
+        onChangeState={(event: string) => {
           if (event === 'ended') {
             setPlaying(false);
           }

@@ -1,0 +1,1 @@
+Added a new notification system for new videos, app updates, and important announcements, with performance and stability improvements.
