@@ -44,7 +44,7 @@ export default {
         backgroundColor: "#ffffff"
       },
       package: "com.meftahaloloom.sheikhibrahimashraf",
-      versionCode: 14,
+      versionCode: 15,
       permissions: [
         "INTERNET",
         "ACCESS_NETWORK_STATE",
