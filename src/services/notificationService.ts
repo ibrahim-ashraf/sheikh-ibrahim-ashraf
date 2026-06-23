@@ -1,5 +1,5 @@
 import * as Notifications from 'expo-notifications';
-import { Platform } from 'react-native';
+import { Linking, Platform, Alert } from 'react-native';
 import Constants from 'expo-constants';
 import { doc, setDoc } from '@firebase/firestore';
 
@@ -54,20 +54,33 @@ Notifications.setNotificationHandler({
 
 export const registerForPushNotifications = async () => {
   try {
-    // طلب صلاحية الإشعارات
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
+    // التحقق من صلاحية الإشعارات
+    const permissions = await Notifications.getPermissionsAsync();
 
-    let finalStatus = existingStatus;
+    if (permissions.status !== 'granted') {
+      // عرض تنبيه للمستخدم لتفعيل الإشعارات
+      const wantsNotifications = await askNotificationPermission();
 
-    if (existingStatus !== 'granted') {
-      const { status } = await Notifications.requestPermissionsAsync();
+      if (!wantsNotifications) {
+        return null;
+      }
 
-      finalStatus = status;
-    }
+      if (permissions.canAskAgain) {
+        const request = await Notifications.requestPermissionsAsync();
+        console.log('Notification permission request result:', request);
+      } else {
+        console.log('Notification permission denied and cannot ask again');
 
-    if (finalStatus !== 'granted') {
-      console.log('Notification permission denied');
-      return null;
+        // عرض تنبيه للمستخدم لتفعيل الإشعارات من إعدادات التطبيق
+        const openSettings = await askOpenSettings();
+
+        if (openSettings) {
+          openAppSettings();
+        } else {
+          console.log('User chose not to open settings');
+          return null;
+        }
+      }
     }
 
     // الحصول على Project ID الخاص بـ EAS
@@ -133,3 +146,55 @@ const savePushToken = async (token: string) => {
     );
   }
 };
+
+const openAppSettings = () => {
+  if (Platform.OS === 'ios') {
+    // يفتح إعدادات التطبيق على نظام iOS
+    Linking.openURL('app-settings:');
+  } else if (Platform.OS === 'android') {
+    // يفتح صفحة الإعدادات (تفاصيل التطبيق) على نظام Android
+    Linking.openSettings();
+  } else {
+    Alert.alert('خطأ', 'لا يمكن فتح الإعدادات على هذا الجهاز');
+  }
+};
+
+function askNotificationPermission(): Promise<boolean> {
+  return new Promise((resolve) => {
+    Alert.alert(
+      'تفعيل الإشعارات',
+      'هل تريد تفعيل الإشعارات لتلقي أحدث الفيديوهات والتحديثات؟',
+      [
+        {
+          text: 'لاحقًا',
+          style: 'cancel',
+          onPress: () => resolve(false),
+        },
+        {
+          text: 'نعم',
+          onPress: () => resolve(true),
+        },
+      ]
+    );
+  });
+}
+
+function askOpenSettings(): Promise<boolean> {
+  return new Promise((resolve) => {
+    Alert.alert(
+      'الإشعارات معطلة',
+      'يرجى تفعيل الإشعارات من إعدادات التطبيق.',
+      [
+        {
+          text: 'إلغاء',
+          style: 'cancel',
+          onPress: () => resolve(false),
+        },
+        {
+          text: 'فتح الإعدادات',
+          onPress: () => resolve(true),
+        },
+      ]
+    );
+  });
+}

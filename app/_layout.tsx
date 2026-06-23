@@ -96,8 +96,8 @@ export default function RootLayout() {
         await initAuth();
         initializeAds();
 
-        const isFirstLaunch = await AsyncStorage.getItem('@first_launch');
-        console.log('Is first launch?', isFirstLaunch);
+        const hasLaunchedBefore = await AsyncStorage.getItem('@first_launch');
+        console.log('Has launched before?', hasLaunchedBefore);
         const isUserSignedIn = await ensureSignedIn();
 
         if (!isUserSignedIn) {
@@ -111,10 +111,9 @@ export default function RootLayout() {
           console.error('Notification setup failed:', error);
         }
 
-        if (!isFirstLaunch && isUserSignedIn) {
+        if (!hasLaunchedBefore && isUserSignedIn) {
           await AsyncStorage.setItem('@first_launch', 'true');
           router.replace('/(tabs)');
-          return;
         }
 
         const launchCount = await incrementLaunchCount();

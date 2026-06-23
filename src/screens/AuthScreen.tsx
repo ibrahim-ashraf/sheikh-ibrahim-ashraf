@@ -6,6 +6,7 @@ import { signIn } from '../services/authService';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { registerForPushNotifications } from '../services/notificationService';
 
 const AuthScreen = () => {
   const { theme } = useTheme();
@@ -17,6 +18,13 @@ const AuthScreen = () => {
       const userInfo = await signIn();
       if (userInfo) {
         setUserInfo(userInfo);
+
+        try {
+          await registerForPushNotifications();
+        } catch (error) {
+          console.error('Notification registration failed:', error);
+        }
+
         router.replace('/(tabs)'); // توجيه المستخدم مباشرة للصفحة الرئيسية
       }
     } catch (error) {
