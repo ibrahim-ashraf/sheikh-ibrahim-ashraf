@@ -3,7 +3,6 @@ import { View, FlatList, StyleSheet, Text, TouchableOpacity, Image, ActivityIndi
 import { useTheme } from '../context/ThemeContext';
 import { fetchPlaylists, PlaylistItem } from '../services/youtubeApi';
 import { useRouter } from 'expo-router';
-import { AdBanner } from '../components/AdBanner';
 
 const PlaylistsScreen = () => {
   const { theme } = useTheme();
@@ -91,7 +90,6 @@ const PlaylistsScreen = () => {
         accessible={true}
         accessibilityLabel="قائمة قوائم التشغيل"
       />
-      <AdBanner />
     </View>
   );
 };

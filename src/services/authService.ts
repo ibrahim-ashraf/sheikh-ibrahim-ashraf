@@ -2,24 +2,6 @@ import { GoogleSignin, statusCodes } from '@react-native-google-signin/google-si
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 
-const printAllStorage = async () => {
-  try {
-    const keys = await AsyncStorage.getAllKeys();
-    if (keys.length === 0) {
-      console.log('📭 لا توجد بيانات مخزنة في AsyncStorage.');
-      return;
-    }
-
-    const stores = await AsyncStorage.multiGet(keys);
-    console.log('📦 محتوى AsyncStorage:');
-    stores.forEach(([key, value]) => {
-      console.log(`🔑 ${key} => 📄 ${value}`);
-    });
-  } catch (error) {
-    console.error('حدث خطأ أثناء طباعة محتوى AsyncStorage:', error);
-  }
-};
-
 const AUTH_KEY = '@auth_token';
 const USER_KEY = '@user_info';
 

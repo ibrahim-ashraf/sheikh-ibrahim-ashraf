@@ -4,16 +4,13 @@ import { useTheme } from '../context/ThemeContext';
 import { Ionicons } from '@expo/vector-icons';
 import { fetchChannelInfo, ChannelInfo, CHANNEL_ID } from '../services/youtubeApi';
 import { openRatingPage } from '../services/ratingService';
-import { AdBanner } from '../components/AdBanner';
 import { useRouter } from 'expo-router';
-import { useSubscription } from '../context/SubscriptionContext';
 import Constants from 'expo-constants';
 
 const AboutScreen = () => {
   const { theme } = useTheme();
   const router = useRouter();
   const [channelInfo, setChannelInfo] = useState<ChannelInfo['items'][0] | null>(null);
-  const { setUserInfo, isPremium } = useSubscription();
 
   useEffect(() => {
     loadChannelInfo();
@@ -30,9 +27,11 @@ const AboutScreen = () => {
 
   const socialLinks = [
     { icon: 'logo-youtube', url: `https://youtube.com/channel/${CHANNEL_ID}`, color: '#FF0000', label: 'قناة اليوتيوب' },
-    { icon: 'logo-facebook', url: 'https://www.facebook.com/IbrahimAshrafFB', color: '#1877F2', label: 'صفحة فيسبوك' },
-    { icon: 'logo-twitter', url: 'https://x.com/IbrahimAshrafX', color: '#000000', label: 'حساب X' },
-    { icon: 'paper-plane', url: 'https://t.me/IbrahimAshrafTG_C', color: '#0088cc', label: 'قناة تيليجرام' },
+    { icon: 'logo-facebook', url: 'https://www.facebook.com/ibrahimashrafabdo', color: '#1877F2', label: 'فيسبوك' },
+    { icon: 'logo-instagram', url: 'https://www.instagram.com/ibrahim_ashraf_i', color: '#E1306C', label: 'إنستغرام' },
+    { icon: 'logo-twitter', url: 'https://x.com/IbrahimAshrafX', color: '#000000', label: 'X' },
+    { icon: 'paper-plane', url: 'https://t.me/IbrahimAshraf_TG_C', color: '#0088cc', label: 'تيليجرام' },
+    { icon: 'logo-whatsapp', url: 'https://whatsapp.com/channel/0029Vb5Z2gi7dmeTWFvrp61M', color: '#25D366', label: 'قناة الواتساب' },
     {
       icon: 'star',
       url: '',
@@ -60,7 +59,7 @@ const AboutScreen = () => {
   };
 
   const openPrivacyPolicy = () => {
-    Linking.openURL('https://sheikh-ibrahim-ashraf.netlify.app/privacy-policy');
+    Linking.openURL('https://ibrahim-ashraf.github.io/sheikh-ibrahim-ashraf/privacy-policy.html');
   };
 
   if (!channelInfo) {
@@ -120,22 +119,6 @@ const AboutScreen = () => {
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => router.push("/subscribe")}
-          style={[styles.button, { backgroundColor: theme.colors.primary }]}
-          accessible={true}
-          accessibilityRole="button"
-          accessibilityLabel="الاشتراك المميز"
-          accessibilityHint="اشترك لإزالة الإعلانات"
-        >
-          <View style={styles.buttonInner}>
-            <Ionicons name="star-outline" size={20} color="#FFFFFF" style={styles.buttonIcon} />
-            <Text style={[styles.buttonText, { color: '#FFFFFF' }]}>
-              الاشتراك
-            </Text>
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity
           onPress={shareApp}
           style={[styles.button, { backgroundColor: theme.colors.primary }]}
           accessible={true}
@@ -147,8 +130,6 @@ const AboutScreen = () => {
             شارك التطبيق
           </Text>
         </TouchableOpacity>
-
-        <AdBanner />
 
         <View style={styles.appInfo}>
           <Text style={[styles.appVersion, { color: theme.colors.textSecondary }]}>
@@ -216,15 +197,6 @@ const styles = StyleSheet.create({
   },
   appVersion: {
     fontSize: 14,
-  },
-  buttonInner: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-  },
-  buttonIcon: {
-    marginLeft: 8,
   },
 });
 

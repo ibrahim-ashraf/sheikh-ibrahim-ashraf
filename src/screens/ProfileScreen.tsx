@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
-import { useSubscription } from '../context/SubscriptionContext';
+import { useUser } from '../context/UserContext';
 import { signOut, getUserFromStorage } from '../services/authService';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProfileScreen = () => {
   const { theme } = useTheme();
-  const { userInfo, setUserInfo } = useSubscription();
+  const { userInfo, setUserInfo } = useUser();
   const router = useRouter();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const ProfileScreen = () => {
     if (!userInfo) {
       loadUserInfo();
     }
-  }, []);
+  }, [setUserInfo, userInfo]);
 
   const handleSignOut = async () => {
     try {

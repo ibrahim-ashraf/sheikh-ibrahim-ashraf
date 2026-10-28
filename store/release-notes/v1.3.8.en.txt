@@ -1,0 +1,5 @@
+Removed ads, in-app purchases, and subscriptions completely.
+Moved app update checks to GitHub Pages.
+Updated Android 16 build settings and edge-to-edge display support.
+Updated social links and privacy policy references.
+Changed the "More" screen title and refreshed app text.

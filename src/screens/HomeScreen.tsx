@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, StyleSheet, ActivityIndicator, TouchableOpacity, Text } from 'react-native';
+import { View, FlatList, StyleSheet, ActivityIndicator } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { fetchLatestVideos, searchVideos, VideoItem } from '../services/youtubeApi';
 import VideoCard from '../components/VideoCard';
 import SearchBar from '../components/SearchBar';
-import { AdBanner } from '../components/AdBanner';
-import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
 
 const HomeScreen = () => {
   const [videos, setVideos] = useState<VideoItem[]>([]);
   const [loading, setLoading] = useState(true);
   const { theme } = useTheme();
-  const router = useRouter();
 
   useEffect(() => {
     loadVideos();
@@ -59,17 +55,6 @@ const HomeScreen = () => {
             accessibilityLabel="قائمة الفيديوهات"
             accessibilityHint="اسحب لأسفل للتحديث"
           />
-          <TouchableOpacity
-            onPress={() => router.push("/subscribe")}
-            style={[styles.subscribeButton, { backgroundColor: theme.colors.primary }]}
-            accessible={true}
-            accessibilityLabel="احصل على اشتراك مميز"
-            accessibilityHint="اشترك للتصفح بدون إعلانات"
-          >
-            <Ionicons name="star-outline" size={20} color="#FFFFFF" />
-            <Text style={styles.subscribeButtonText}>احصل على تجربة بدون إعلانات</Text>
-          </TouchableOpacity>
-          <AdBanner />
         </>
       )}
     </View>
@@ -86,21 +71,6 @@ const styles = StyleSheet.create({
   },
   listContent: {
     paddingVertical: 8,
-  },
-  subscribeButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 12,
-    marginHorizontal: 16,
-    marginBottom: 8,
-    borderRadius: 8,
-  },
-  subscribeButtonText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginLeft: 8,
   },
 });
 

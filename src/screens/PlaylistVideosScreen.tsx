@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, FlatList, StyleSheet, ActivityIndicator, Text, TouchableOpacity } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { fetchPlaylistVideos, PlaylistVideoItem, VideoItem } from '../services/youtubeApi';
 import VideoCard from '../components/VideoCard';
-import { AdBanner } from '../components/AdBanner';
-import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
 
 interface PlaylistVideosScreenProps {
   playlistId: string;
@@ -13,16 +10,11 @@ interface PlaylistVideosScreenProps {
 
 const PlaylistVideosScreen: React.FC<PlaylistVideosScreenProps> = ({ playlistId }) => {
   const { theme } = useTheme();
-  const router = useRouter();
   const [videos, setVideos] = useState<PlaylistVideoItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAlert, setShowAlert] = useState(true);
 
-  useEffect(() => {
-    loadPlaylistVideos();
-  }, [playlistId]);
-
-  const loadPlaylistVideos = async () => {
+  const loadPlaylistVideos = useCallback(async () => {
     try {
       const data = await fetchPlaylistVideos(playlistId);
       setVideos(data.items);
@@ -31,7 +23,11 @@ const PlaylistVideosScreen: React.FC<PlaylistVideosScreenProps> = ({ playlistId 
     } finally {
       setLoading(false);
     }
-  };
+  }, [playlistId]);
+
+  useEffect(() => {
+    loadPlaylistVideos();
+  }, [loadPlaylistVideos]);
 
   const videoItemToVideoCard = (item: PlaylistVideoItem): VideoItem => ({
     id: { videoId: item.snippet.resourceId.videoId },
@@ -93,17 +89,6 @@ const PlaylistVideosScreen: React.FC<PlaylistVideosScreenProps> = ({ playlistId 
         accessibilityLabel="قائمة التشغيل"
         accessibilityHint="اسحب لأسفل للتحديث"
       />
-      <TouchableOpacity
-        onPress={() => router.push("/subscribe")}
-        style={[styles.subscribeButton, { backgroundColor: theme.colors.primary }]}
-        accessible={true}
-        accessibilityLabel="احصل على اشتراك مميز"
-        accessibilityHint="اشترك للتصفح بدون إعلانات"
-      >
-        <Ionicons name="star-outline" size={20} color="#FFFFFF" />
-        <Text style={styles.subscribeButtonText}>احصل على تجربة بدون إعلانات</Text>
-      </TouchableOpacity>
-      <AdBanner />
     </View>
   );
 };
@@ -138,21 +123,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     marginLeft: 16,
-  },
-  subscribeButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 12,
-    marginHorizontal: 16,
-    marginBottom: 8,
-    borderRadius: 8,
-  },
-  subscribeButtonText: {
-    color: '#FFFFFF',
-    fontSize: 14,
-    fontWeight: 'bold',
-    marginLeft: 8,
   },
 });
 

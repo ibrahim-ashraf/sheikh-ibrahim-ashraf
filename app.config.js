@@ -2,7 +2,7 @@ export default {
   expo: {
     name: "تطبيق الشيخ إبراهيم أشرف",
     slug: "sheikh-ibrahim-ashraf",
-    version: "1.3.7",
+    version: "1.3.8",
     orientation: "portrait",
     icon: "assets/images/icon.png",
     userInterfaceStyle: "automatic",
@@ -15,20 +15,15 @@ export default {
     plugins: [
       "expo-router",
       "expo-font",
-      [
-        "react-native-google-mobile-ads",
-        {
-          androidAppId: "ca-app-pub-4846811371537023~1051371561",
-          iosAppId: "ca-app-pub-xxxxxxxx~xxxxxxxx"
-        }
-      ],
+      "./plugins/withAndroidGradlePluginVersion",
       [
         "expo-build-properties",
         {
           android: {
-            compileSdkVersion: 35,
-            targetSdkVersion: 35,
-            buildToolsVersion: "35.0.0",
+            minSdkVersion: 24,
+            compileSdkVersion: 36,
+            targetSdkVersion: 36,
+            buildToolsVersion: "36.0.0",
             enableProguardInReleaseBuilds: true
           }
         }
@@ -44,11 +39,10 @@ export default {
         backgroundColor: "#ffffff"
       },
       package: "com.meftahaloloom.sheikhibrahimashraf",
-      versionCode: 15,
+      versionCode: 16,
+      edgeToEdgeEnabled: true,
       permissions: [
         "INTERNET",
-        "ACCESS_NETWORK_STATE",
-        "com.android.vending.BILLING",
         "POST_NOTIFICATIONS"
       ],
       jsEngine: "hermes",

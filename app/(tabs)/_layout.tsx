@@ -2,7 +2,6 @@ import { Tabs } from 'expo-router';
 import { TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../src/context/ThemeContext';
-import { useSubscription } from '../../src/context/SubscriptionContext';
 
 export default function TabsLayout() {
   const { theme, isDarkMode, toggleTheme } = useTheme();
@@ -51,8 +50,8 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="about/index"
         options={{
-          title: 'عن القناة',
-          headerTitle: 'عن القناة',
+          title: 'المزيد',
+          headerTitle: 'المزيد',
           tabBarIcon: ({ focused, color, size }) => (
             <Ionicons name={focused ? 'information-circle' : 'information-circle-outline'} size={size} color={color} />
           ),

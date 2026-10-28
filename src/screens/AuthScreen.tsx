@@ -1,16 +1,15 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
-import { useSubscription } from '../context/SubscriptionContext';
+import { useUser } from '../context/UserContext';
 import { signIn } from '../services/authService';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { registerForPushNotifications } from '../services/notificationService';
 
 const AuthScreen = () => {
   const { theme } = useTheme();
-  const { setUserInfo } = useSubscription();
+  const { setUserInfo } = useUser();
   const router = useRouter();
 
   const handleGoogleSignIn = async () => {

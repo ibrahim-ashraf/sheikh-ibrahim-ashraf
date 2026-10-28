@@ -2,11 +2,9 @@ import React, { useEffect } from 'react';
 import { Stack, useRouter, usePathname } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { ThemeProvider } from '../src/context/ThemeContext';
-import { SubscriptionProvider } from '../src/context/SubscriptionContext';
+import { UserProvider } from '../src/context/UserContext';
 import { incrementLaunchCount, checkShouldShowRating, showRatingPrompt } from '../src/services/ratingService';
 import { checkForUpdates } from '../src/services/updateService';
-import { initializeAds } from '../src/services/adsService';
-import { initPurchases } from '../src/services/purchaseService';
 import { initAuth, ensureSignedIn } from '../src/services/authService';
 import { BackHandler, Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -40,7 +38,7 @@ export default function RootLayout() {
     return () => {
       subscription.remove();
     };
-  }, []);
+  }, [router]);
 
   // معالجة الإشعارات عند فتح التطبيق من حالة الإغلاق
   useEffect(() => {
@@ -72,29 +70,41 @@ export default function RootLayout() {
     };
 
     handleInitialNotification();
-  }, []);
+  }, [router]);
 
   // معالجة زر الرجوع
   useEffect(() => {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      // إغلاق التطبيق فقط إذا كنا في الشاشة الرئيسية أو شاشة تسجيل الدخول
+      const state = (router as any).getState?.();
+      const routes = state?.routes ?? [];
+      const hasNavigationHistory = !!router.canGoBack() || routes.length > 1;
+
       if (pathname === '/auth' || pathname === '/(tabs)' || pathname === '/') {
+        if (hasNavigationHistory) {
+          router.back();
+          return true;
+        }
+
         BackHandler.exitApp();
         return true;
       }
+
+      if (hasNavigationHistory) {
+        router.back();
+        return true;
+      }
+
       return false;
     });
 
     return () => backHandler.remove();
-  }, [pathname]);
+  }, [pathname, router]);
 
   // تهيئة التطبيق - تنفذ مرة واحدة فقط
   useEffect(() => {
     const initApp = async () => {
       try {
-        await initPurchases();
         await initAuth();
-        initializeAds();
 
         const hasLaunchedBefore = await AsyncStorage.getItem('@first_launch');
         console.log('Has launched before?', hasLaunchedBefore);
@@ -130,12 +140,12 @@ export default function RootLayout() {
     };
 
     initApp();
-  }, []); // تنفذ مرة واحدة فقط عند تحميل المكون
+  }, [router]);
 
   return (
     <SafeAreaProvider>
       <ThemeProvider>
-        <SubscriptionProvider>
+        <UserProvider>
           <Stack screenOptions={{ headerShown: false }}>
             <Stack.Screen name="(tabs)" />
             <Stack.Screen
@@ -151,7 +161,7 @@ export default function RootLayout() {
               options={{ headerShown: true }}
             />
           </Stack>
-        </SubscriptionProvider>
+        </UserProvider>
       </ThemeProvider>
     </SafeAreaProvider>
   );
