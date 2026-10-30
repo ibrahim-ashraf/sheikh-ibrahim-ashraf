@@ -2,8 +2,11 @@
   "latestVersion": "1.3.8",
   "minVersion": "1.0.0",
   "message": {
-    "ar": "إزالة الإعلانات والمشتريات والاشتراكات، وتحسين التحقق من توفر تحديثات التطبيق.",
-    "en": "Ads, in-app purchases, and subscriptions have been removed. App update checking has been improved."
+    "ar": "إزالة الإعلانات والمشتريات والاشتراكات. تحسين التحقق من توفر تحديثات التطبيق. استهداف Android 16 ودعم العرض من الحافة إلى الحافة. تحديث روابط التواصل الاجتماعي وسياسة الخصوصية. تغيير عنوان شاشة \"المزيد\".",
+
+.
+
+    "en": "Ads, in-app purchases, and subscriptions have been removed. App update checking has been improved. Target Android 16 and edge-to-edge display support. Updated social links and privacy policy references. Changed the \"More\" screen title"
   },
   "forceUpdate": false,
   "url": "https://play.google.com/store/apps/details?id=com.meftahaloloom.sheikhibrahimashraf"

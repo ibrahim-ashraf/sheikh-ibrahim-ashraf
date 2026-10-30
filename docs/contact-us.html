@@ -4,383 +4,457 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>اتصل بنا - تطبيق الشيخ إبراهيم أشرف</title>
-
+  <title>التواصل | تطبيق الشيخ إبراهيم أشرف</title>
+  <link rel="stylesheet" href="styles.css">
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      line-height: 1.6;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
+      font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.8;
       background-color: #f8f9fa;
-      color: #333;
-    }
-
-    .container {
-      background: white;
-      padding: 2rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    h1,
-    h2,
-    h3 {
       color: #2c3e50;
-      margin-bottom: 1rem;
+      margin: 0;
+      padding: 0;
     }
 
-    .contact-section {
-      margin: 2rem 0;
-      padding: 1.5rem;
-      background-color: #f8f9fa;
-      border-radius: 8px;
+    .page-wrapper {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
-    .contact-method {
-      margin-bottom: 1.5rem;
-      padding: 1rem;
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    .container-box {
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(16, 26, 43, 0.08);
+      border: 1px solid #e8e3d9;
     }
 
-    .contact-method h3 {
-      color: #2c3e50;
-      margin-top: 0;
-      display: flex;
+    .back-nav {
+      margin-bottom: 2rem;
+    }
+
+    .back-btn {
+      display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-    }
-
-    .contact-method svg {
-      width: 24px;
-      height: 24px;
-    }
-
-    .social-links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin: 1rem 0;
-    }
-
-    .social-link {
-      display: flex;
-      align-items: center;
-      padding: 1rem;
-      background-color: #fff;
-      border-radius: 8px;
+      gap: 8px;
+      color: #9a773d;
       text-decoration: none;
-      color: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
       transition: transform 0.2s;
     }
 
-    .social-link:hover {
-      transform: translateY(-2px);
+    .back-btn:hover {
+      transform: translateX(4px);
+      color: #7b5d2c;
     }
 
-    .social-link svg {
-      width: 24px;
-      height: 24px;
-      margin-left: 0.5rem;
+    h1 {
+      color: #101a2b;
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      font-size: 2.2rem;
     }
 
-    .email-template {
-      background-color: #e9ecef;
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1rem 0;
-      direction: ltr;
-      text-align: left;
+    .subtitle {
+      color: #556272;
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      line-height: 1.8;
     }
 
-    .note {
-      background-color: #fff3cd;
-      color: #856404;
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1rem 0;
+    .notice-card {
+      background: linear-gradient(135deg, #f0f7ff, #e8f0fe);
+      border-right: 4px solid #1a73e8;
+      padding: 1.25rem 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 2.5rem;
+      font-size: 1.05rem;
+      color: #153e75;
+      line-height: 1.8;
     }
 
-    .response-time {
-      background-color: #d4edda;
-      color: #155724;
-      padding: 1rem;
-      border-radius: 8px;
-      margin: 1rem 0;
+    .section-block {
+      margin-bottom: 2.5rem;
     }
 
-    /* نموذج الاتصال */
-    .contact-form {
-      margin-top: 2rem;
-      padding: 2rem;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .section-block h2 {
+      color: #101a2b;
+      font-size: 1.4rem;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #f0ede6;
     }
 
-    .form-group {
+    .direct-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
       margin-bottom: 1.5rem;
     }
 
-    .form-label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      color: #2c3e50;
+    .direct-card {
+      background: #fafaf7;
+      border: 1px solid #e5dfd5;
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
     }
 
-    .form-input,
-    .form-select,
-    .form-textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      font-size: 1rem;
-      font-family: inherit;
-      background-color: #fff;
+    .direct-card:hover {
+      border-color: #c9a86a;
+      box-shadow: 0 6px 18px rgba(16, 26, 43, 0.06);
+      transform: translateY(-2px);
     }
 
-    .form-textarea {
-      min-height: 150px;
-      resize: vertical;
+    .direct-card-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #101a2b;
     }
 
-    .form-submit {
-      background-color: #2c3e50;
-      color: #fff;
-      border: none;
-      padding: 1rem 2rem;
-      border-radius: 4px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background-color 0.2s;
+    .direct-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
     }
 
-    .form-submit:hover {
-      background-color: #34495e;
+    .direct-link {
+      color: #1a73e8;
+      text-decoration: none;
+      font-weight: 700;
+      direction: ltr;
+      text-align: right;
+      font-size: 1.05rem;
+      word-break: break-all;
     }
 
-    .form-submit:disabled {
-      background-color: #95a5a6;
-      cursor: not-allowed;
+    .direct-link:hover {
+      text-decoration: underline;
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .social-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 1.2rem;
+      background: #ffffff;
+      border: 1px solid #e5dfd5;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #202b3a;
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .social-item:hover {
+      border-color: #c9a86a;
+      background: #fffcf8;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(16, 26, 43, 0.08);
+    }
+
+    .social-icon-wrapper {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .social-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .social-title {
+      font-size: 1.05rem;
+      color: #101a2b;
+    }
+
+    .social-desc {
+      font-size: 0.85rem;
+      color: #7b8490;
+      font-weight: 500;
+    }
+
+    .course-credit {
+      background: linear-gradient(135deg, #101a2b, #1e2e47);
+      color: #ffffff;
+      border-radius: 14px;
+      padding: 1.75rem 2rem;
+      margin-top: 3rem;
+      border: 1px solid #c9a86a;
+      box-shadow: 0 10px 25px rgba(16, 26, 43, 0.15);
+    }
+
+    .course-credit h3 {
+      color: #ead8b5;
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .course-credit p {
+      margin: 0;
+      color: #d6e0ed;
+      font-size: 0.98rem;
+      line-height: 1.8;
+    }
+
+    .page-footer {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.9rem;
+      color: #777;
     }
 
     @media (max-width: 600px) {
-      .social-links {
+      .container-box {
+        padding: 1.5rem;
+      }
+      .direct-grid, .social-grid {
         grid-template-columns: 1fr;
       }
-
-      .contact-form {
-        padding: 1rem;
+      h1 {
+        font-size: 1.8rem;
       }
-    }
-
-    /* تنسيق رسالة النجاح */
-    .success-message {
-      display: none;
-      background-color: #d4edda;
-      color: #155724;
-      padding: 1rem;
-      border-radius: 4px;
-      margin-bottom: 1rem;
-      text-align: center;
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="page-wrapper">
+    <div class="container-box">
 
-    <h1>اتصل بنا</h1>
-    <p>
-      نرحب بتواصلكم معنا في أي وقت. يمكنكم الوصول إلينا من خلال النموذج أدناه أو عبر قنوات الاتصال المختلفة.
-    </p>
+      <nav class="back-nav" aria-label="التنقل">
+        <a href="index.html" class="back-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+          العودة إلى الصفحة الرئيسية للموقع
+        </a>
+      </nav>
 
-    <div class="contact-section">
-      <h2>نموذج الاتصال</h2>
-      <form name="contact" method="POST" data-netlify="true" class="contact-form" netlify-honeypot="bot-field">
-        <p class="hidden">
-          <label>
-            لا تملأ هذا الحقل إذا كنت إنساناً: <input name="bot-field" />
-          </label>
+      <header>
+        <h1>التواصل مع الشيخ إبراهيم أشرف</h1>
+        <p class="subtitle">
+          مرحبًا بكم في صفحة التواصل الرسمية. يسعدنا استقبال رسائلكم واستفساراتكم حول التطبيق والمحتوى القرآني والعلمي.
         </p>
+      </header>
 
-        <input type="hidden" name="form-name" value="contact" />
-
-        <div class="form-group">
-          <label for="name" class="form-label">الاسم</label>
-          <input type="text" id="name" name="name" class="form-input" required>
-        </div>
-
-        <div class="form-group">
-          <label for="email" class="form-label">البريد الإلكتروني</label>
-          <input type="email" id="email" name="email" class="form-input" required>
-        </div>
-
-        <div class="form-group">
-          <label for="request-type" class="form-label">نوع الطلب</label>
-          <select id="request-type" name="request-type" class="form-select" required>
-            <option value="">اختر نوع الطلب</option>
-            <option value="general">استفسار عام</option>
-            <option value="technical">مشكلة تقنية</option>
-            <option value="account-deletion">طلب حذف حساب</option>
-            <option value="other">أخرى</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="app-version" class="form-label">إصدار التطبيق (اختياري)</label>
-          <input type="text" id="app-version" name="app-version" class="form-input" placeholder="مثال: 1.3.8">
-        </div>
-
-        <div class="form-group">
-          <label for="message" class="form-label">الرسالة</label>
-          <textarea id="message" name="message" class="form-textarea" required></textarea>
-        </div>
-
-        <button type="submit" class="form-submit">إرسال الرسالة</button>
-      </form>
-
-      <div id="success-message" class="success-message">
-        تم إرسال رسالتك بنجاح! سنقوم بالرد عليك في أقرب وقت ممكن.
+      <div class="notice-card" role="region" aria-label="تنبيه وسائل التواصل">
+        <strong>📌 تنبيه هام بخصوص المراسلة:</strong>
+        <br>
+        تم إلغاء نموذج المراسلة المباشر، ويكون التواصل معي حصرًا من خلال <strong>وسائل التواصل الاجتماعي الرسمية</strong> الموضحة أدناه، أو عبر <strong>البريد الإلكتروني الشخصي المباشر</strong>.
       </div>
-    </div>
 
-    <div class="response-time">
-      <strong>⏱️ وقت الاستجابة المتوقع:</strong>
-      <ul>
-        <li>الرسائل العامة: خلال 24 ساعة عمل</li>
-        <li>المشكلات التقنية: خلال 48 ساعة عمل</li>
-        <li>طلبات حذف الحساب: خلال 48 ساعة عمل</li>
-      </ul>
-    </div>
+      <section class="section-block" aria-labelledby="direct-contact-title">
+        <h2 id="direct-contact-title">
+          <span>✉️</span>
+          التواصل المباشر والبريد الشخصي
+        </h2>
+        <div class="direct-grid">
+          <div class="direct-card">
+            <div class="direct-card-header">
+              <div class="direct-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a73e8" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+              </div>
+              <span>البريد الإلكتروني الشخصي</span>
+            </div>
+            <p style="margin: 0; color: #647184; font-size: 0.9rem;">لاستقبال الاستفسارات العامة والملاحظات العلمية والتقنية:</p>
+            <a href="mailto:ibrahimashrafabdo@gmail.com" class="direct-link">ibrahimashrafabdo@gmail.com</a>
+          </div>
 
-    <div class="contact-section">
-      <h2>طرق التواصل الرسمية</h2>
+          <div class="direct-card">
+            <div class="direct-card-header">
+              <div class="direct-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="#0088cc">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.49-1.302.481-.428-.009-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.178.119.13.154.305.164.466-.004.061-.005.177-.006.357z" />
+                </svg>
+              </div>
+              <span>حساب تيليجرام المباشر</span>
+            </div>
+            <p style="margin: 0; color: #647184; font-size: 0.9rem;">للمحادثة والتواصل الشخصي المباشر:</p>
+            <a href="https://t.me/sheikhibrahim" target="_blank" rel="noopener noreferrer" class="direct-link">@sheikhibrahim</a>
+          </div>
+        </div>
+      </section>
 
-      <div class="contact-method">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-            <polyline points="22,6 12,13 2,6" />
-          </svg>
-          البريد الإلكتروني
+      <section class="section-block" aria-labelledby="social-channels-title">
+        <h2 id="social-channels-title">
+          <span>🌐</span>
+          الحسابات والقنوات الرسمية (حسب الأولوية المناسبة)
+        </h2>
+        <div class="social-grid">
+          
+          <!-- 1. YouTube -->
+          <a href="https://youtube.com/channel/UCdI_zQXtDJto-MAVI-LHgJg" target="_blank" rel="noopener noreferrer" class="social-item">
+            <div class="social-icon-wrapper" style="background: #fff0f0;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#FF0000">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </div>
+            <div class="social-meta">
+              <span class="social-title">قناة YouTube الرسمية</span>
+              <span class="social-desc">التلاوات الكاملة والدروس والمرئيات</span>
+            </div>
+          </a>
+
+          <!-- 2. Telegram Channel -->
+          <a href="https://t.me/IbrahimAshrafTG_C" target="_blank" rel="noopener noreferrer" class="social-item">
+            <div class="social-icon-wrapper" style="background: #eef7fc;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#0088cc">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.49-1.302.481-.428-.009-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.178.119.13.154.305.164.466-.004.061-.005.177-.006.357z" />
+              </svg>
+            </div>
+            <div class="social-meta">
+              <span class="social-title">قناة Telegram</span>
+              <span class="social-desc">التسجيلات الصوتية والمنشورات العلمية</span>
+            </div>
+          </a>
+
+          <!-- 3. WhatsApp Channel -->
+          <a href="https://whatsapp.com/channel/0029Vaexample" id="whatsapp-channel-link" target="_blank" rel="noopener noreferrer" class="social-item">
+            <div class="social-icon-wrapper" style="background: #eafaf1;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#25D366">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+            </div>
+            <div class="social-meta">
+              <span class="social-title">قناة WhatsApp الرسمية</span>
+              <span class="social-desc">أحدث التنبيهات والبثوث المباشرة</span>
+            </div>
+          </a>
+
+          <!-- 4. Facebook -->
+          <a href="https://www.facebook.com/IbrahimAshrafFB" target="_blank" rel="noopener noreferrer" class="social-item">
+            <div class="social-icon-wrapper" style="background: #edf3fd;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#1877F2">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </div>
+            <div class="social-meta">
+              <span class="social-title">صفحة فيسبوك</span>
+              <span class="social-desc">المنشورات والمقالات والتواصل المجتمعي</span>
+            </div>
+          </a>
+
+          <!-- 5. X (Twitter) -->
+          <a href="https://x.com/IbrahimAshrafX" target="_blank" rel="noopener noreferrer" class="social-item">
+            <div class="social-icon-wrapper" style="background: #f0f0f0;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="#000000">
+                <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644Z" />
+              </svg>
+            </div>
+            <div class="social-meta">
+              <span class="social-title">منصة X (تويتر سابقًا)</span>
+              <span class="social-desc">المقتطفات القرآنية والأفكار العلمية</span>
+            </div>
+          </a>
+
+          <!-- 6. Instagram -->
+          <a href="https://www.instagram.com/IbrahimAshrafIG" id="instagram-link" target="_blank" rel="noopener noreferrer" class="social-item">
+            <div class="social-icon-wrapper" style="background: #fdf0f4;">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="#E4405F">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
+            <div class="social-meta">
+              <span class="social-title">Instagram</span>
+              <span class="social-desc">المقاطع المرئية والتصميمات القرآنية</span>
+            </div>
+          </a>
+
+        </div>
+      </section>
+
+      <section class="course-credit" aria-labelledby="course-credit-title">
+        <h3 id="course-credit-title">
+          <span>🎓</span>
+          مشروع الدورة التدريبية
         </h3>
-        <p>يمكنكم مراسلتنا على: <strong>info@sheikhibrahimashraf.com</strong></p>
-        <p>نستقبل جميع الاستفسارات والمقترحات وطلبات الدعم الفني.</p>
-      </div>
+        <p>
+          أُنشِئ هذا الموقع كأحد مشروعاتي في <strong>الدورة التدريبية لتصميم المواقع بالذكاء الاصطناعي للمهندس/ فادي شحاتة</strong>، فجر يوم الجمعة المبارك <strong>19 جمادى الأولى 1448هـ</strong> الموافق <strong>30 أكتوبر 2026م</strong>.
+        </p>
+      </section>
 
-      <div class="contact-method">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M22 2L11 13" />
-            <path d="M22 2l-7 20-4-9-9-4 20-7z" />
-          </svg>
-          تيليجرام
-        </h3>
-        <p>للتواصل المباشر والسريع: <a href="https://t.me/sheikhibrahim">@sheikhibrahim</a></p>
-      </div>
+      <footer class="page-footer">
+        <div>
+          <span>آخر تحديث للصفحة: الجمعة 30 أكتوبر 2026م 19 جمادى الأولى 1448ه</span>
+        </div>
+        <div>
+          <a href="privacy-policy.html" style="color: #666; text-decoration: none;">سياسة الخصوصية</a>
+        </div>
+      </footer>
+
     </div>
-
-    <div class="contact-section">
-      <h2>حسابات التواصل الاجتماعي</h2>
-      <div class="social-links">
-        <a href="https://youtube.com/channel/UCdI_zQXtDJto-MAVI-LHgJg" class="social-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FF0000">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-          </svg>
-          قناة اليوتيوب
-        </a>
-        <a href="https://www.facebook.com/IbrahimAshrafFB" class="social-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1877F2">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-          </svg>
-          صفحة فيسبوك
-        </a>
-        <a href="https://x.com/IbrahimAshrafX" class="social-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000">
-            <path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.901 1.153ZM17.61 20.644h2.039L6.486 3.24H4.298L17.61 20.644Z" />
-          </svg>
-          حساب X
-        </a>
-        <a href="https://t.me/IbrahimAshrafTG_C" class="social-link">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0088cc">
-            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.49-1.302.481-.428-.009-1.252-.241-1.865-.44-.752-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635.099-.002.321.023.465.178.119.13.154.305.164.466-.004.061-.005.177-.006.357z" />
-          </svg>
-          قناة تيليجرام
-        </a>
-      </div>
-    </div>
-
-    <div class="contact-section">
-      <h2>معلومات الدعم الفني</h2>
-      <div class="contact-method">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
-          </svg>
-          معلومات مفيدة للدعم الفني
-        </h3>
-        <p>للإبلاغ عن مشكلة تقنية، يرجى تضمين المعلومات التالية في رسالتك:</p>
-        <ul>
-          <li>نوع الجهاز وإصدار نظام التشغيل</li>
-          <li>إصدار التطبيق</li>
-          <li>وصف تفصيلي للمشكلة</li>
-          <li>خطوات إعادة إنتاج المشكلة (إن أمكن)</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="contact-section">
-      <h2>معلومات إضافية</h2>
-      <ul>
-        <li>نرد على جميع الرسائل خلال أوقات العمل (9 صباحاً - 5 مساءً بتوقيت القاهرة)</li>
-        <li>لضمان رد أسرع، يرجى اختيار نوع الطلب المناسب في النموذج</li>
-        <li>للأسئلة الشائعة، يمكنكم مراجعة <a href="privacy-policy.html">سياسة الخصوصية</a></li>
-      </ul>
-    </div>
-
-    <p>
-      آخر تحديث: مايو 2025
-    </p>
   </div>
 
+  <script src="site-config.js"></script>
   <script>
-    // إظهار رسالة النجاح بعد إرسال النموذج
-    const form = document.querySelector('form[name="contact"]');
-    const successMessage = document.getElementById('success-message');
-
-    if (form) {
-      form.addEventListener('submit', function (e) {
-        if (!e.defaultPrevented) {
-          const formData = new FormData(form);
-          fetch('/', {
-            method: 'POST',
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(formData).toString()
-          })
-            .then(() => {
-              form.style.display = 'none';
-              successMessage.style.display = 'block';
-              form.reset();
-            })
-            .catch((error) => alert('حدث خطأ أثناء إرسال النموذج. يرجى المحاولة مرة أخرى.'));
+    // ربط الحسابات مع الإعدادات المركزية تلقائيًا
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.SITE_CONFIG) {
+        const cfg = window.SITE_CONFIG;
+        if (cfg.email) {
+          document.querySelectorAll('a[href^="mailto:"]').forEach(function(a) {
+            a.href = 'mailto:' + cfg.email;
+            a.textContent = cfg.email;
+          });
         }
-      });
-    }
-
-    // تحديث حقل نوع الطلب تلقائياً إذا تم الوصول عبر رابط حذف الحساب
-    document.addEventListener('DOMContentLoaded', function () {
-      if (window.location.hash === '#account-deletion') {
-        const requestType = document.getElementById('request-type');
-        if (requestType) {
-          requestType.value = 'account-deletion';
+        if (cfg.personalTelegram) {
+          const pt = document.querySelector('a[href*="t.me/sheikhibrahim"]');
+          if (pt) pt.href = cfg.personalTelegram;
+        }
+        if (cfg.social) {
+          const map = {
+            youtube: 'a[href*="youtube.com"]',
+            telegram: 'a[href*="IbrahimAshrafTG_C"]',
+            whatsapp: '#whatsapp-channel-link',
+            facebook: 'a[href*="facebook.com"]',
+            x: 'a[href*="x.com"]',
+            instagram: '#instagram-link'
+          };
+          for (const key in map) {
+            if (cfg.social[key]) {
+              const el = document.querySelector(map[key]);
+              if (el) el.href = cfg.social[key];
+            }
+          }
         }
       }
     });
